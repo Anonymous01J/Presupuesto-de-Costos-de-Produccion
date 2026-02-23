@@ -99,17 +99,11 @@ $(document).ready(function () {
   let tasa, util, iva, loteBase;
 
   /* ── DataTables ─────────────────────────────────────── */
+  // Tabla Materia Prima: responsive inline (sin modal)
   var tableMP = $('#tablaMP').DataTable({
     paging: true, lengthChange: false, pageLength: 5, info: false, searching: false,
     ordering: false,
-    responsive: {
-      details: {
-        display: $.fn.dataTable.Responsive.display.modal({
-          header: function (row) { return 'Detalles de ' + (row.data()[0] || 'fila'); }
-        }),
-        renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-      }
-    },
+    responsive: true,  // Cambiado: ahora usa el renderer inline por defecto
     autoWidth: false,
     columnDefs: [
       { responsivePriority: 1, targets: [0, 1, 2, 3] },
@@ -118,17 +112,11 @@ $(document).ready(function () {
     ]
   });
 
+  // Tabla Mano de Obra: responsive inline
   var tableMOD = $('#tablaMOD').DataTable({
     paging: true, lengthChange: false, pageLength: 5, info: false, searching: false,
     ordering: false,
-    responsive: {
-      details: {
-        display: $.fn.dataTable.Responsive.display.modal({
-          header: function (row) { return 'Detalles de ' + (row.data()[0] || 'fila'); }
-        }),
-        renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-      }
-    },
+    responsive: true,
     autoWidth: false,
     columnDefs: [
       { responsivePriority: 1, targets: [0, 1, 3] },
@@ -137,17 +125,11 @@ $(document).ready(function () {
     ]
   });
 
+  // Tabla CIF: responsive inline
   var tableCIF = $('#tablaCIF').DataTable({
     paging: true, lengthChange: false, pageLength: 5, info: false, searching: false,
     ordering: false,
-    responsive: {
-      details: {
-        display: $.fn.dataTable.Responsive.display.modal({
-          header: function (row) { return 'Detalles de ' + (row.data()[0] || 'fila'); }
-        }),
-        renderer: $.fn.dataTable.Responsive.renderer.tableAll()
-      }
-    },
+    responsive: true,
     autoWidth: false,
     columnDefs: [
       { responsivePriority: 1, targets: [0, 1, 2] },
@@ -156,7 +138,7 @@ $(document).ready(function () {
     ]
   });
 
-  // Tabla de ejemplo: Empleados (fuera del modal)
+  // Tabla de resumen ejecutivo (fuera del modal)
   $('#resumen-ejecutivo-table').DataTable({
     responsive: true,
     searching: false,
@@ -171,7 +153,7 @@ $(document).ready(function () {
     ]
   });
 
-  // Tabla comparativa (paso 5) - ahora es responsive
+  // Tabla comparativa (paso 5) - responsive
   var tableComparativa = $('#tablaComparativa').DataTable({
       paging: false,
       searching: false,
@@ -179,8 +161,8 @@ $(document).ready(function () {
       ordering: false,
       responsive: true,
       columnDefs: [
-          { responsivePriority: 1, targets: 0 }, // Concepto (siempre visible)
-          { responsivePriority: 2, targets: [1, 2, 3] } // Las tres columnas de valores se ocultan juntas
+          { responsivePriority: 1, targets: 0 },
+          { responsivePriority: 2, targets: [1, 2, 3] }
       ]
   });
 
